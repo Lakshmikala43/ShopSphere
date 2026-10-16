@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StyleKart AI - Next-Gen Multi-Category Marketplace</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement-bar">
+    <div>
+      <span class="announcement-badge">AI-POWERED MARKETPLACE</span>
+      <span>Express Shipping on orders over ₹499 | Use Code <strong>STYLE10</strong> for 10% Off</span>
+    </div>
+    <div style="display: flex; gap: 1rem;">
+      <a href="#" onclick="openModal('sellerModal')">Sell on StyleKart</a>
+      <span>|</span>
+      <a href="#" onclick="openModal('ordersModal')">Track Orders</a>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon">SK</div>
+        <div class="logo-text">StyleKart <span class="logo-ai-tag">AI</span></div>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="search-box-wrapper">
+        <i data-lucide="search" class="search-icon-left" style="width: 18px; height: 18px;"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search 2,400+ products under ₹1,000 or try 'girls dress'..." onkeyup="handleSearch(event)">
+        <button class="search-btn-right" onclick="triggerSearch()">Search</button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="ai-stylist-nav-btn" onclick="openModal('aiStylistModal')">
+          <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+          <span>AI Stylist</span>
+        </button>
+
+        <button class="nav-icon-btn" onclick="openModal('wishlistModal')" title="Wishlist">
+          <i data-lucide="heart" style="width: 22px; height: 22px;"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </button>
+
+        <button class="nav-icon-btn" onclick="openModal('cartModal')" title="Shopping Cart">
+          <i data-lucide="shopping-bag" style="width: 22px; height: 22px;"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </button>
+
+        <button class="btn-secondary-dark" style="padding: 0.5rem 1rem;" onclick="openModal('loginModal')">
+          Sign In
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-grid">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; color: #a5b4fc; margin-bottom: 1rem;">
+          <i data-lucide="sparkles" style="width: 14px; height: 14px; color: #f59e0b;"></i> StyleKart Budget Superstore
+        </div>
+        <h1 class="hero-title">
+          Smart Shopping Powered by <span class="hero-title-gradient">AI Fashion Intelligence</span>
+        </h1>
+        <p class="hero-subtitle">
+          Discover 2,400+ unique products across Women & Girls Dresses, Footwear, Electronics, and Beauty — <strong>All Priced Strictly Under ₹1,000</strong>!
+        </p>
+        <div class="hero-cta-group">
+          <button class="btn-primary-gradient" onclick="openModal('aiStylistModal')">
+            <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i> Launch AI Fashion Stylist
+          </button>
+          <a href="#catalog-section" class="btn-secondary-dark">
+            Explore 2,400+ Catalog Items →
+          </a>
+        </div>
+      </div>
+
+      <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: var(--radius-xl); padding: 1.5rem; backdrop-filter: blur(12px);">
+        <div style="font-size: 0.75rem; font-weight: 800; color: #a5b4fc; text-transform: uppercase; margin-bottom: 0.75rem;">
+          ✨ Featured AI Stylist Pick (Under ₹1,000)
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=300&q=80" alt="Floral Dress" style="width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2);">
+          <div>
+            <div style="font-size: 0.7rem; font-weight: 700; color: #94a3b8; uppercase;">Women's Summer Look</div>
+            <div style="font-size: 0.9rem; font-weight: 800; color: #ffffff;">Aura Luxe Floral Chiffon Maxi Dress</div>
+            <div style="font-size: 1.1rem; font-weight: 900; color: #818cf8; margin-top: 0.25rem;">Outfit Total: ₹699</div>
+          </div>
+        </div>
+        <button class="btn-primary-gradient" style="width: 100%; justify-content: center; margin-top: 1rem; font-size: 0.75rem; padding: 0.625rem;" onclick="openModal('aiStylistModal')">
+          Curate Your Custom Look →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Catalog Section -->
+  <main class="section-container" id="catalog-section">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">2,400+ Unique Products Catalog</h2>
+        <p class="section-subtitle">200+ distinct items per section — strictly priced below ₹1,000</p>
+      </div>
+      <div style="display: flex; gap: 0.5rem;">
+        <select id="categoryFilter" style="padding: 0.5rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); font-size: 0.875rem; font-weight: 700; background-color: #ffffff;" onchange="filterByCategory(this.value)">
+          <option value="ALL">All Categories (2,400+ Items)</option>
+          <option value="fashion">Fashion & Dresses (200+ Items)</option>
+          <option value="footwear">Footwear & Sneakers (200+ Items)</option>
+          <option value="accessories">Accessories & Watches (200+ Items)</option>
+          <option value="beauty">Beauty & Skincare (200+ Items)</option>
+          <option value="electronics">Electronics & Gadgets (200+ Items)</option>
+          <option value="home-kitchen">Home & Kitchen (200+ Items)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Cards Grid -->
+    <div class="products-grid" id="productsGrid">
+      <!-- Injected dynamically via JS -->
+    </div>
+  </main>
+
+  <!-- Floating AI Assistant Button -->
+  <button class="floating-ai-trigger" onclick="toggleAIChatDrawer()">
+    <i data-lucide="sparkles" style="width: 22px; height: 22px;"></i>
+    <span style="font-weight: 800; font-size: 0.875rem;">Ask AI Assistant</span>
+  </button>
+
+  <!-- AI Stylist Modal -->
+  <div class="modal-overlay" id="aiStylistModal">
+    <div class="modal-content">
+      <button class="close-modal-btn" onclick="closeModal('aiStylistModal')">✕</button>
+      <h3 style="font-size: 1.25rem; font-weight: 900; margin-bottom: 0.5rem;">✨ AI Fashion Stylist Outfit Builder</h3>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">Select your occasion and budget under ₹1,000 to curate an outfit!</p>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+          <label style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">1. Occasion</label>
+          <select id="stylistOccasion" style="width: 100%; padding: 0.625rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); font-size: 0.875rem; font-weight: 700; margin-top: 0.25rem;">
+            <option value="Wedding">Wedding / Traditional Festival</option>
+            <option value="Party">Evening Party / Cocktail</option>
+            <option value="Casual">Casual / Summer Outing</option>
+            <option value="College">College / Daily Wear</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">2. Max Budget (₹)</label>
+          <input type="range" id="stylistBudget" min="300" max="1000" step="50" value="899" oninput="document.getElementById('budgetValue').innerText = '₹' + this.value" style="width: 100%; accent-color: var(--primary);">
+          <div style="text-align: right; font-weight: 800; color: var(--primary); font-size: 0.875rem;" id="budgetValue">₹899</div>
+        </div>
+
+        <button class="btn-primary-gradient" style="justify-content: center; width: 100%;" onclick="generateAIStylistOutfit()">
+          Curate Complete Look Now
+        </button>
+
+        <div id="stylistResult" style="display: none; background: #f8fafc; padding: 1rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-top: 0.5rem;">
+          <!-- Result rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Modal -->
+  <div class="modal-overlay" id="cartModal">
+    <div class="modal-content">
+      <button class="close-modal-btn" onclick="closeModal('cartModal')">✕</button>
+      <h3 style="font-size: 1.25rem; font-weight: 900; margin-bottom: 1rem;">🛒 Shopping Cart</h3>
+      <div id="cartItemsList" style="max-height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+        <!-- Injected dynamically -->
+      </div>
+      <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;">
+        <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 1.1rem;">
+          <span>Total:</span>
+          <span id="cartTotalDisplay">₹0</span>
+        </div>
+        <button class="btn-primary-gradient" style="width: 100%; justify-content: center; margin-top: 1rem;" onclick="openModal('checkoutModal'); closeModal('cartModal');">
+          Proceed to Checkout →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Master JavaScript Modules -->
+  <script src="js/catalog-data.js"></script>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Render Initial Catalog Items
+    function renderProducts(items) {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = items.map(p => `
+        <div class="product-card">
+          <span class="product-discount-badge">${p.discountPercent}% OFF</span>
+          <div class="product-image-container">
+            <img src="${p.image}" alt="${p.name}" class="product-image">
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-brand">${p.brand}</div>
+              <h3 class="product-name">${p.name}</h3>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price">₹${p.price}</span>
+                <span class="product-original-price">₹${Math.round(p.price / (1 - p.discountPercent/100))}</span>
+              </div>
+              <button class="add-cart-btn" onclick="addToCart('${p.id}')">+ Add</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Modal Manager
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    // Cart Manager
+    let cart = [];
+    function addToCart(productId) {
+      const item = window.STYLEKART_CATALOG.find(p => p.id === productId);
+      if (item) {
+        cart.push(item);
+        document.getElementById('cartBadge').innerText = cart.length;
+        alert(item.name + ' added to shopping cart!');
+      }
+    }
+
+    // AI Stylist Generator
+    function generateAIStylistOutfit() {
+      const budget = parseInt(document.getElementById('stylistBudget').value);
+      const items = window.STYLEKART_CATALOG.filter(p => p.price <= budget);
+      const res = document.getElementById('stylistResult');
+      res.style.display = 'block';
+      if (items.length > 0) {
+        const top = items[0];
+        res.innerHTML = `
+          <div style="font-size: 0.875rem; font-weight: 800; color: var(--text-main);">✨ Curated Outfit Match:</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">${top.name} - ₹${top.price}</div>
+          <button class="btn-primary-gradient" style="width: 100%; margin-top: 0.75rem; font-size: 0.75rem; padding: 0.5rem;" onclick="addToCart('${top.id}')">Add Outfit to Cart (₹${top.price})</button>
+        `;
+      }
+    }
+
+    // Filter by Category
+    function filterByCategory(slug) {
+      if (slug === 'ALL') renderProducts(window.STYLEKART_CATALOG);
+      else renderProducts(window.STYLEKART_CATALOG.filter(p => p.categorySlug === slug));
+    }
+
+    // Initial render
+    window.onload = () => {
+      renderProducts(window.STYLEKART_CATALOG);
+    };
+  </script>
+</body>
+</html>
